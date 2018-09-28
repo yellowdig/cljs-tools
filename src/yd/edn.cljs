@@ -22,11 +22,15 @@
     (postwalk (fn [x] (if (map? x) (into {} (map f x)) (tag-fn x))) m)))
 
 
-(defn encode [js-data]
-  (-> js-data js->clj (walk interpret-kw) pr-str))
+(defn encode [js-data keywordize?]
+  (cond-> (js->clj js-data) 
+      keywordize? (walk interpret-kw) 
+      true pr-str))
 
 
-(defn decode [edn-str]
-  (-> edn-str read-string (walk print-kw) clj->js))
-
+(defn decode [edn-str keywordize?]
+  (cond-> (read-string edn-str)
+    keywordize? (walk print-kw)
+    true clj->js))
+    
 
