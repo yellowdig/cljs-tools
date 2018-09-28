@@ -1,0 +1,24 @@
+{
+  "name": "@yellowdig/cljs-tools",
+  "version": "0.0.1",
+  "description": "js api to various clojurescript utilities",
+  "main": "package/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yellowdig/cljs-tools.git"
+  },
+  "keywords": [
+    "clojurescript",
+    "cljs",
+    "edn"
+  ],
+  "author": "Brian Hurlow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yellowdig/cljs-tools/issues"
+  },
+  "homepage": "https://github.com/yellowdig/cljs-tools#readme"
+}
