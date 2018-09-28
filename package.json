@@ -4,7 +4,8 @@
   "description": "js api to various clojurescript utilities",
   "main": "package/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lein cljsbuild once release",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
