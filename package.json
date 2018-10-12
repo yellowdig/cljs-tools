@@ -1,6 +1,6 @@
 {
   "name": "@yellowdig/cljs-tools",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "js api to various clojurescript utilities",
   "main": "package/index.js",
   "scripts": {

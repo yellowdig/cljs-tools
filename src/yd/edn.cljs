@@ -1,6 +1,6 @@
 (ns yd.edn
   (:require [clojure.walk :refer (postwalk)]
-            [clojure.string :refer (replace)]
+            [clojure.string :refer (replace includes?)]
             [cljs.tools.reader :refer (read-string)]))
 
 
@@ -21,9 +21,12 @@
     true k-str))
 
 
+;; if value is a url, treat it as a string literal
 (defn interpret-val [value]
   (if (string? value)
-    (read-string value)
+    (if (includes? value "//")
+      value
+      (read-string value))
     value))
 
 
