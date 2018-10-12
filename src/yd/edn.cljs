@@ -27,11 +27,18 @@
     (catch js/Error e nil)))
 
 
+(defn is-numeric? [num-str]
+  (number? (js/Number num-str)))
+
+
 ;; 1. if value is a url, treat it as a string literal
 ;; 2. js cannot distinguish between symbols vs strings, thus don't allow encoding of symbols
+;; 3. numeric strings should remain strings 
 (defn interpret-val [value]
-  (let [read-val (try-read value)]
+  (let [numeric (is-numeric? value)
+        read-val (try-read value)]
     (cond
+      numeric value
       (string? value)
       (cond
         (includes? value "//") value

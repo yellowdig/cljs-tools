@@ -12,8 +12,11 @@
   "{ \":board/settings\": { \":board-settings/read-only\" : true  } }")
 
 
+(def test-str-3
+  "{ \":user/string\": \"40\" }")
+
+
 (defn test1 []
-  (println "TEST!")
   (let [js-data (js/JSON.parse test-str-1)
         encoded (encode js-data true)]
     (println encoded)
@@ -21,8 +24,14 @@
 
 
 (defn test2 []
-  (println "TEST!")
   (let [js-data (js/JSON.parse test-str-2)
         encoded (encode js-data true)]
     (println encoded)))
+
+
+(defn test3 []
+  (let [js-data (js/JSON.parse test-str-3)
+        encoded (encode js-data true)]
+    (println encoded)
+    (assert (= "#:user{:string \"40\"}" encoded))))
 
