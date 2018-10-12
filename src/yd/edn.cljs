@@ -21,13 +21,16 @@
     true k-str))
 
 
-;; if value is a url, treat it as a string literal
+;; 1. if value is a url, treat it as a string literal
+;; 2. js cannot distinguish between symbols vs strings, thus don't allow encoding of symbols
 (defn interpret-val [value]
-  (if (string? value)
-    (if (includes? value "//")
-      value
-      (read-string value))
-    value))
+  (let [read-val (read-string value)]
+    (cond
+      (string? value)
+      (cond
+        (includes? value "//") value
+        (symbol? read-val) value
+        :else read-val))))
 
 
 (defn print-kw [x]
