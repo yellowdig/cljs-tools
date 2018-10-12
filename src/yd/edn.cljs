@@ -36,7 +36,8 @@
       (cond
         (includes? value "//") value
         (symbol? read-val) value
-        :else read-val))))
+        :else read-val)
+      :else value)))
 
 
 (defn print-kw [x]
@@ -45,7 +46,12 @@
 
 (defn walk [m key-fn val-fn]
   (let [f (fn [[k v]] [(key-fn k) (val-fn v)])]
-    (postwalk (fn [x] (if (map? x) (into {} (map f x)) (key-fn x))) m)))
+    (postwalk 
+      (fn [x] 
+        (if (map? x) 
+          (into {} (map f x)) 
+          (key-fn x))) 
+      m)))
 
 
 (defn encode [js-data keywordize?]
