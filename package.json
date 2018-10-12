@@ -5,7 +5,7 @@
   "main": "package/index.js",
   "scripts": {
     "build": "lein cljsbuild once release",
-    "publish": "npm publish --access public"
+    "publish-to-npm": "npm publish --access public"
   },
   "repository": {
     "type": "git",
