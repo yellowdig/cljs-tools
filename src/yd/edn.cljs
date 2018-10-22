@@ -1,7 +1,7 @@
 (ns yd.edn
   (:require [clojure.walk :refer (postwalk)]
             [clojure.string :refer (replace includes?)]
-            [cljs.tools.reader :refer (read-string)]))
+            [cljs.reader :refer (read-string)]))
 
 
 (defn keylike? [k-str]
@@ -21,9 +21,13 @@
     true k-str))
 
 
+(defn read-data [data]
+  (read-string data))
+
+
 (defn try-read [value]
   (try
-    (read-string value)
+    (read-data value)
     (catch js/Error e nil)))
 
 
@@ -69,7 +73,7 @@
 
 
 (defn decode [edn-str keywordize?]
-  (cond-> (read-string edn-str)
+  (cond-> (read-data edn-str)
     keywordize? (walk print-kw identity)
     true clj->js))
     

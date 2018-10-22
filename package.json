@@ -1,9 +1,10 @@
 {
   "name": "@yellowdig/cljs-tools",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "js api to various clojurescript utilities",
   "main": "package/index.js",
   "scripts": {
+    "release": "npm run build && npm run publish-to-npm",
     "build": "lein cljsbuild once release",
     "publish-to-npm": "npm publish --access public"
   },
