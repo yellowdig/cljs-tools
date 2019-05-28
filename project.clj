@@ -7,6 +7,7 @@
                         :compiler {:main yd.module
                                    :output-to "package/index.js"
                                    :target :nodejs
+                                   :hashbang false
                                    :externs ["externs.js"]
                                    :optimizations :advanced
                                    :pretty-print true
