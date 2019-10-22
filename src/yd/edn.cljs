@@ -3,6 +3,7 @@
             [clojure.string :refer (replace includes?)]
             [cljs.reader :refer (read-string)]))
 
+(binding [*data-readers* {'inst cljs.tagged-literals/read-inst}])
 
 (defn keylike? [k-str]
   (and (string? k-str)
