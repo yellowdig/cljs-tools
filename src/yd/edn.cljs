@@ -3,8 +3,6 @@
             [clojure.string :refer (replace includes?)]
             [cljs.reader :refer (read-string)]))
 
-(binding [*data-readers* {'inst cljs.tagged-literals/read-inst}])
-
 (defn keylike? [k-str]
   (and (string? k-str)
        (.startsWith k-str ":")))
@@ -23,7 +21,8 @@
 
 
 (defn read-data [data]
-  (read-string data))
+  (binding [*data-readers* {'inst cljs.tagged-literals/read-inst}]
+    (read-string data)))
 
 
 (defn try-read [value]
