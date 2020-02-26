@@ -3,3 +3,5 @@ node_modules/**
 package/**
 target/**
 .cpcache/
+benchmark/bench.edn
+benchmark/bench.transit

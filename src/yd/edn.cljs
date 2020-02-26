@@ -1,7 +1,8 @@
 (ns yd.edn
   (:require [clojure.walk :refer (postwalk)]
             [clojure.string :refer (replace includes?)]
-            [cljs.reader :refer (read-string)]))
+            [cljs.reader :refer (read-string)]
+            [yd.transit]))
 
 
 (defn keylike? [k-str]
@@ -23,6 +24,11 @@
 
 (defn read-data [data]
   (read-string data))
+
+
+(defn read-transit [transit-str]
+  (let [r (t/reader :json)]
+     (t/read r transit-str)))
 
 
 (defn try-read [value]
@@ -74,6 +80,12 @@
 
 (defn decode [edn-str keywordize?]
   (cond-> (read-data edn-str)
+    keywordize? (walk print-kw identity)
+    true clj->js))
+
+
+(defn decode-transit [transit-str keywordize?]
+  (cond-> (yd.transit/decode transit-str)
     keywordize? (walk print-kw identity)
     true clj->js))
     
