@@ -1,12 +1,7 @@
 const fs = require('fs')
 
 const str = fs.readFileSync('./bench.transit').toString()
-
 const decodeTransit = require('../decode.js')
-
-// console.log(str)
-// console.log(decodeTransit)
-// console.log(decodeTransit(str))
 
 var runs = 100
 const times = []
